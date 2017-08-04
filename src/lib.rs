@@ -38,6 +38,7 @@
 
 #![cfg_attr(all(test, feature = "unstable"), feature(test))]
 #[cfg(all(test, feature = "unstable"))] extern crate test;
+#[cfg(feature = "singleton")] #[macro_use] extern crate lazy_static;
 
 extern crate arrayvec;
 extern crate rustc_serialize as serialize;
@@ -48,6 +49,12 @@ extern crate rand;
 use libc::size_t;
 use std::{error, fmt, ops, ptr};
 use rand::Rng;
+
+#[cfg(feature = "singleton")]
+lazy_static! {
+    /// Singleton for Secp256k1
+	pub static ref SECP256K1: Secp256k1 = Secp256k1::new();
+}
 
 #[macro_use]
 mod macros;

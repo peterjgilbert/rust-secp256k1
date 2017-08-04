@@ -21,12 +21,14 @@ path = "src/lib.rs"
 
 [features]
 unstable = []
-default = []
+default = ["singleton"]
+singleton = ["lazy_static"]
 dev = ["clippy"]
 
 [dependencies]
 arrayvec = "0.3"
-clippy = {version = "0.0", optional = true}
+clippy = { version = "0.0", optional = true }
 rand = "0.3"
 libc = "0.2"
 rustc-serialize = "0.3"
+lazy_static = { version = "0.2", optional = true }
